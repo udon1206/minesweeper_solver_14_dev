@@ -2,7 +2,7 @@ import React from "react";
 import SelectSizeDropDown from "./components/SelectSize";
 import Grid from "./components/Grid";
 import axios from "axios";
-import { Button, Checkbox } from "@fluentui/react-components";
+import { Button, Input } from "@fluentui/react-components";
 import { convertEnvironment } from "./schema/Environment";
 import { IsResult } from "./schema/Result";
 import { Rule } from "./schema/Rule";
@@ -18,7 +18,8 @@ const App = () => {
     is_connect: false,
     is_lie: false,
     is_triple: false,
-    is_out: false
+    is_out: false,
+    is_dual: false,
   });
   const url = "http://127.0.0.1:8000/solve";
 
@@ -42,6 +43,10 @@ const App = () => {
             setSelectedId={setSelectedId}
             setGridStatus={setGridStatus}
             setAllMinesCount={setAllMinesCount} />
+          <Input type="number" value={allMinesCount.toString()} onChange={(e) => {
+            setAllMinesCount(parseInt(e.target.value));
+          }
+          } />
           <Button onClick={() => {
             axios.post(url, convertEnvironment(gridNumbers, allMinesCount, size, rules))
               .then((res) => {

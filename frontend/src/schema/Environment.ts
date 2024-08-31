@@ -8,7 +8,8 @@ export type Environment = {
     is_connect: boolean,
     is_lie: boolean,
     is_triple: boolean,
-    is_out: boolean
+    is_out: boolean,
+    is_dual: boolean,
 };
 
 export const convertEnvironment = (gridNumbers: number[], all_mines_count: number, size: number, rule: Rule): Environment => {
@@ -24,6 +25,7 @@ export const convertEnvironment = (gridNumbers: number[], all_mines_count: numbe
         is_connect: rule.is_connect,
         is_lie: rule.is_lie,
         is_triple: rule.is_triple,
-        is_out: rule.is_out
+        is_out: rule.is_out,
+        is_dual: rule.is_dual,
     };
 }
