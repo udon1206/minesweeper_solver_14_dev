@@ -25,7 +25,7 @@ const Grid:
                 return gridNumber;
             }
         }
-        console.log(gridStatus);
+
         return (
             <div style={{
                 display: "flex",
