@@ -6,6 +6,7 @@ import {
     SelectionEvents,
     shorthands,
 } from "@fluentui/react-components";
+import { all } from "axios";
 
 const useStyles = makeStyles({
     dropDown: {
@@ -18,16 +19,19 @@ const useStyles = makeStyles({
     },
 });
 
-const SelectSizeDropDown = ({ size, setSize, setGridNumbers }: {
+const SelectSizeDropDown = ({ size, setSize, setGridNumbers, setGridStatus, setSelectedId, setAllMinesCount }: {
     size: number;
     setSize: (size: number) => void;
     setGridNumbers: (gridNumbers: number[]) => void;
+    setGridStatus: (gridStatus: number[]) => void;
+    setSelectedId: (selectedId: number | null) => void;
+    setAllMinesCount: (allMinesCount: number) => void;
 }) => {
     const options = [
-        { key: "5", value: 5 },
-        { key: "6", value: 6 },
-        { key: "7", value: 7 },
-        { key: "8", value: 8 },
+        { key: "5", value: 5, allMinesCount: 10 },
+        { key: "6", value: 6, allMinesCount: 14 },
+        { key: "7", value: 7, allMinesCount: 20 },
+        { key: "8", value: 8, allMinesCount: 26 },
     ];
     const styles = useStyles();
 
@@ -38,6 +42,9 @@ const SelectSizeDropDown = ({ size, setSize, setGridNumbers }: {
         const nextSize = parseInt(data.optionText, 10);
         setSize(nextSize);
         setGridNumbers(Array.from({ length: nextSize * nextSize }, () => -1));
+        setGridStatus(Array.from({ length: nextSize * nextSize }, () => -1));
+        setSelectedId(null);
+        setAllMinesCount(options.find(option => option.value === nextSize)?.allMinesCount ?? 10);
     };
     return (
         <div className={styles.dropDown}>

@@ -1,3 +1,5 @@
+import { Rule } from "./Rule";
+
 export type Environment = {
     grid_array: number[][][],
     all_mines_count: number,
@@ -8,7 +10,7 @@ export type Environment = {
     is_triple: boolean
 };
 
-export const convertEnvironment = (gridNumbers: number[], all_mines_count: number, size: number): Environment => {
+export const convertEnvironment = (gridNumbers: number[], all_mines_count: number, size: number, rule: Rule): Environment => {
     const grid_array:number[][][] = [];
     for (let i = 0; i < size; i++) {
         grid_array.push(gridNumbers.slice(i * size, (i + 1) * size).map((val) => [val === -3 ? -1 : val]));
@@ -17,9 +19,9 @@ export const convertEnvironment = (gridNumbers: number[], all_mines_count: numbe
         grid_array: grid_array,
         all_mines_count: all_mines_count,
         coffeences: Array.from({ length: size }, () => Array.from({ length: size }, () => 1)),
-        is_quad: false,
-        is_connect: false,
-        is_lie: false,
-        is_triple: false
+        is_quad: rule.is_quad,
+        is_connect: rule.is_connect,
+        is_lie: rule.is_lie,
+        is_triple: rule.is_triple
     };
 }

@@ -2,13 +2,23 @@ import React from "react";
 import SelectSizeDropDown from "./components/SelectSize";
 import Grid from "./components/Grid";
 import axios from "axios";
-import { Button } from "@fluentui/react-components";
+import { Button, Checkbox } from "@fluentui/react-components";
 import { convertEnvironment } from "./schema/Environment";
 import { IsResult } from "./schema/Result";
+import { Rule } from "./schema/Rule";
+import Rules from "./components/Rules";
 const App = () => {
   const [size, setSize] = React.useState(5);
   const [gridNumbers, setGridNumbers] = React.useState(Array.from({ length: size * size }, () => -1));
   const [gridStatus, setGridStatus] = React.useState(Array.from({ length: size * size }, () => -1));
+  const [selectedId, setSelectedId] = React.useState<number | null>(null);
+  const [allMinesCount, setAllMinesCount] = React.useState(10);
+  const [rules, setRules] = React.useState<Rule>({
+    is_quad: false,
+    is_connect: false,
+    is_lie: false,
+    is_triple: false
+  });
   const url = "http://127.0.0.1:8000/solve";
   return (
     <>
@@ -23,9 +33,15 @@ const App = () => {
           gap: "10px",
           padding: "10px"
         }}>
-          <SelectSizeDropDown size={size} setSize={setSize} setGridNumbers={setGridNumbers} />
+          <SelectSizeDropDown
+            size={size}
+            setSize={setSize}
+            setGridNumbers={setGridNumbers}
+            setSelectedId={setSelectedId}
+            setGridStatus={setGridStatus}
+            setAllMinesCount={setAllMinesCount} />
           <Button onClick={() => {
-            axios.post(url, convertEnvironment(gridNumbers, 10, size))
+            axios.post(url, convertEnvironment(gridNumbers, allMinesCount, size, rules))
               .then((res) => {
                 if (IsResult(res.data)) {
                   const newGridNumbers = [...gridNumbers];
@@ -57,7 +73,13 @@ const App = () => {
           }
             appearance="primary">Solve</Button>
         </div>
-        <Grid size={size} gridNumbers={gridNumbers} setGridNumbers={setGridNumbers} gridStatus={gridStatus} />
+        <Rules rule={rules} setRule={setRules} />
+        <Grid size={size}
+          gridNumbers={gridNumbers}
+          setGridNumbers={setGridNumbers}
+          gridStatus={gridStatus}
+          selectedId={selectedId}
+          setSelectedId={setSelectedId} />
       </div>
     </>
   );
