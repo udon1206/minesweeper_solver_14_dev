@@ -1,0 +1,27 @@
+.grid-container {
+  display: grid;
+  gap: 0px;
+  padding: 10px;
+}
+
+.grid-item {
+  border: 1px solid #a8a7a7; /* 軽い境界線 */
+  padding: 20px;
+  text-align: center;
+  width: 10px;
+  height: 10px;
+  border-left: none;
+  border-top: none;
+}
+
+.default {
+  background-color: #f3f2f1;
+}
+
+.editing {
+  background-color: #ffffcc;
+}
+
+.safe {
+  background-color: #00FF00;
+}

@@ -1,0 +1,25 @@
+export type Environment = {
+    grid_array: number[][][],
+    all_mines_count: number,
+    coffeences: number[][],
+    is_quad: boolean,
+    is_connect: boolean,
+    is_lie: boolean,
+    is_triple: boolean
+};
+
+export const convertEnvironment = (gridNumbers: number[], all_mines_count: number, size: number): Environment => {
+    const grid_array:number[][][] = [];
+    for (let i = 0; i < size; i++) {
+        grid_array.push(gridNumbers.slice(i * size, (i + 1) * size).map((val) => [val === -3 ? -1 : val]));
+    }
+    return {
+        grid_array: grid_array,
+        all_mines_count: all_mines_count,
+        coffeences: Array.from({ length: size }, () => Array.from({ length: size }, () => 1)),
+        is_quad: false,
+        is_connect: false,
+        is_lie: false,
+        is_triple: false
+    };
+}
