@@ -36,6 +36,12 @@ const Rules = ({ rule, setRule }: {
                 onChange={() => {
                     setRule({ ...rule, is_triple: !rule.is_triple });
                 }} />
+            <Checkbox
+                label={"O"}
+                checked={rule.is_out}
+                onChange={() => {
+                    setRule({ ...rule, is_out: !rule.is_out });
+                }} />
         </div >
     );
 }

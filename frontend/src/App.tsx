@@ -17,9 +17,11 @@ const App = () => {
     is_quad: false,
     is_connect: false,
     is_lie: false,
-    is_triple: false
+    is_triple: false,
+    is_out: false
   });
   const url = "http://127.0.0.1:8000/solve";
+
   return (
     <>
       <div style={{
@@ -44,6 +46,7 @@ const App = () => {
             axios.post(url, convertEnvironment(gridNumbers, allMinesCount, size, rules))
               .then((res) => {
                 if (IsResult(res.data)) {
+                  console.log(res.data);
                   const newGridNumbers = [...gridNumbers];
                   for (const e of res.data.result) {
                     if (e.flag) {
