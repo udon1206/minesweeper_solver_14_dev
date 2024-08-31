@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
     Dropdown,
     makeStyles,
@@ -28,9 +26,7 @@ const SelectedGridVal = ({ index, gridNumbers, setGridNumbers, setSelectedId }: 
     setSelectedId: (selectedId: number | null) => void;
 }) => {
     const options = [
-        { key: "-3", value: "🚩" },
         { key: "-2", value: "?" },
-        { key: "-1", value: "" },
         { key: "0", value: "0" },
         { key: "1", value: "1" },
         { key: "2", value: "2" },
@@ -41,6 +37,8 @@ const SelectedGridVal = ({ index, gridNumbers, setGridNumbers, setSelectedId }: 
         { key: "7", value: "7" },
         { key: "8", value: "8" },
         { key: "9", value: "9" },
+        { key: "-3", value: "🚩" },
+        { key: "-1", value: "" },
     ];
 
     const styles = useStyles();
