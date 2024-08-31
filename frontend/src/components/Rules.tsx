@@ -48,6 +48,12 @@ const Rules = ({ rule, setRule }: {
                 onChange={() => {
                     setRule({ ...rule, is_dual: !rule.is_dual });
                 }} />
+            <Checkbox
+                label={"S"}
+                checked={rule.is_snake}
+                onChange={() => {
+                    setRule({ ...rule, is_snake: !rule.is_snake });
+                }} />
         </div >
     );
 }
