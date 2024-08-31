@@ -13,7 +13,7 @@ export type Environment = {
 export const convertEnvironment = (gridNumbers: number[], all_mines_count: number, size: number, rule: Rule): Environment => {
     const grid_array:number[][][] = [];
     for (let i = 0; i < size; i++) {
-        grid_array.push(gridNumbers.slice(i * size, (i + 1) * size).map((val) => [val === -3 ? -1 : val]));
+        grid_array.push(gridNumbers.slice(i * size, (i + 1) * size).map((val) => [val]));
     }
     return {
         grid_array: grid_array,
