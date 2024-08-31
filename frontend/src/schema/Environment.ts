@@ -11,6 +11,7 @@ export type Environment = {
     is_out: boolean,
     is_dual: boolean,
     is_snake: boolean,
+    is_balance: boolean,
 };
 
 export const convertEnvironment = (gridNumbers: number[], all_mines_count: number, size: number, rule: Rule): Environment => {
@@ -29,5 +30,6 @@ export const convertEnvironment = (gridNumbers: number[], all_mines_count: numbe
         is_out: rule.is_out,
         is_dual: rule.is_dual,
         is_snake: rule.is_snake,
+        is_balance: rule.is_balance
     };
 }

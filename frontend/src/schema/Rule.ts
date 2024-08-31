@@ -6,4 +6,5 @@ export type Rule = {
     is_out: boolean,
     is_dual: boolean,
     is_snake: boolean,
+    is_balance: boolean,
 }

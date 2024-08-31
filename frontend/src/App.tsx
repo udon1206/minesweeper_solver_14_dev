@@ -21,6 +21,7 @@ const App = () => {
     is_out: false,
     is_dual: false,
     is_snake: false,
+    is_balance: false,
   });
   const url = "http://127.0.0.1:8000/solve";
 
