@@ -10,4 +10,6 @@ export type Rule = {
     is_wall: boolean,
     is_neutral: boolean,
     is_xross: boolean,
+    is_partial: boolean,
+    is_eye: boolean,
 }

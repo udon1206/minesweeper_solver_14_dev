@@ -84,6 +84,12 @@ const Rules = ({ rule, setRule }: {
                 onChange={() => {
                     setRule({ ...rule, is_partial: !rule.is_partial });
                 }} />
+            <Checkbox
+                label={"E"}
+                checked={rule.is_eye}
+                onChange={() => {
+                    setRule({ ...rule, is_eye: !rule.is_eye });
+                }} />
         </div >
     );
 }
