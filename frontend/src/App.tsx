@@ -25,6 +25,7 @@ const App = () => {
     is_wall: false,
     is_neutral: false,
     is_xross: false,
+    is_partial: false,
   });
   const url = "http://127.0.0.1:8000/solve";
 

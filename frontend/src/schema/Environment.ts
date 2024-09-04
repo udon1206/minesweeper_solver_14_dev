@@ -14,7 +14,8 @@ export type Environment = {
     is_balance: boolean,
     is_wall: boolean,
     is_neutral: boolean,
-    is_xross: boolean
+    is_xross: boolean,
+    is_partial: boolean,
 };
 
 export const convertEnvironment = (gridNumbers: number[][], all_mines_count: number, size: number, rule: Rule): Environment => {
@@ -36,6 +37,7 @@ export const convertEnvironment = (gridNumbers: number[][], all_mines_count: num
         is_balance: rule.is_balance,
         is_wall: rule.is_wall,
         is_neutral: rule.is_neutral,
-        is_xross: rule.is_xross
+        is_xross: rule.is_xross,
+        is_partial: rule.is_partial
     };
 }
