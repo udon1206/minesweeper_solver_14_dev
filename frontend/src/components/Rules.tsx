@@ -66,6 +66,18 @@ const Rules = ({ rule, setRule }: {
                 onChange={() => {
                     setRule({ ...rule, is_wall: !rule.is_wall });
                 }} />
+            <Checkbox
+                label={"N"}
+                checked={rule.is_neutral}
+                onChange={() => {
+                    setRule({ ...rule, is_neutral: !rule.is_neutral });
+                }} />
+            <Checkbox
+                label={"X"}
+                checked={rule.is_xross}
+                onChange={() => {
+                    setRule({ ...rule, is_xross: !rule.is_xross });
+                }} />
         </div >
     );
 }

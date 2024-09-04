@@ -8,4 +8,6 @@ export type Rule = {
     is_snake: boolean,
     is_balance: boolean,
     is_wall: boolean,
+    is_neutral: boolean,
+    is_xross: boolean,
 }

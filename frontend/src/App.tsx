@@ -23,6 +23,8 @@ const App = () => {
     is_snake: false,
     is_balance: false,
     is_wall: false,
+    is_neutral: false,
+    is_xross: false,
   });
   const url = "http://127.0.0.1:8000/solve";
 
