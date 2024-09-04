@@ -1,0 +1,3 @@
+[submodule "minesweeper_solver_14"]
+	path = minesweeper_solver_14
+	url = git@github.com:udon1206/minesweeper_solver_14.git
