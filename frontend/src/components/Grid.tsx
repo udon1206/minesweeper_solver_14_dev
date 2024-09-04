@@ -4,8 +4,8 @@ import SelectedGridVal from './SelectedGridVal';
 const Grid:
     React.FC<{
         size: number,
-        gridNumbers: number[],
-        setGridNumbers: (gridNumbers: number[]) => void,
+        gridNumbers: number[][],
+        setGridNumbers: (gridNumbers: number[][]) => void,
         gridStatus: number[],
         selectedId: number | null
         setSelectedId: (selectedId: number | null) => void
@@ -14,16 +14,19 @@ const Grid:
         if (gridNumbers.length !== size * size) {
             throw new Error("gridNumbers.length !== size * size");
         }
-        const printGridNumber = (gridNumber: number) => {
-            if (gridNumber === -1) {
-                return "";
-            } else if (gridNumber === -2) {
-                return "?";
-            } else if (gridNumber === -3) {
-                return "🚩";
-            } else {
-                return gridNumber;
-            }
+        const printGridNumber = (gridNumbers: number[]) => {
+            return gridNumbers.map((val) => {
+                if (val === -1) {
+                    return "";
+                }
+                if (val === -2) {
+                    return "?";
+                }
+                if (val === -3) {
+                    return "🚩";
+                }
+                return val.toString()
+            }).join(", ");
         }
 
         return (
@@ -36,7 +39,7 @@ const Grid:
                 }}>
                     {gridNumbers.map((number, index) => (
                         <div key={index} className={"grid-item " + (index === selectedId ? "editing" :
-                            (gridStatus[index] === 0 && gridNumbers[index] === -1) ? "safe" : "default")} onClick={
+                            (gridStatus[index] === 0 && gridNumbers[index][0] === -1) ? "safe" : "default")} onClick={
                                 () => {
                                     setSelectedId(index);
                                 }

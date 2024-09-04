@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 const SelectSizeDropDown = ({ size, setSize, setGridNumbers, setGridStatus, setSelectedId, setAllMinesCount }: {
     size: number;
     setSize: (size: number) => void;
-    setGridNumbers: (gridNumbers: number[]) => void;
+    setGridNumbers: (gridNumbers: number[][]) => void;
     setGridStatus: (gridStatus: number[]) => void;
     setSelectedId: (selectedId: number | null) => void;
     setAllMinesCount: (allMinesCount: number) => void;
@@ -41,7 +41,7 @@ const SelectSizeDropDown = ({ size, setSize, setGridNumbers, setGridStatus, setS
         }
         const nextSize = parseInt(data.optionText, 10);
         setSize(nextSize);
-        setGridNumbers(Array.from({ length: nextSize * nextSize }, () => -1));
+        setGridNumbers(Array.from({ length: nextSize * nextSize }, () => [-1]));
         setGridStatus(Array.from({ length: nextSize * nextSize }, () => -1));
         setSelectedId(null);
         setAllMinesCount(options.find(option => option.value === nextSize)?.allMinesCount ?? 10);

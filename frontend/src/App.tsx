@@ -9,7 +9,7 @@ import { Rule } from "./schema/Rule";
 import Rules from "./components/Rules";
 const App = () => {
   const [size, setSize] = React.useState(5);
-  const [gridNumbers, setGridNumbers] = React.useState(Array.from({ length: size * size }, () => -1));
+  const [gridNumbers, setGridNumbers] = React.useState(Array.from({ length: size * size }, () => [-1]));
   const [gridStatus, setGridStatus] = React.useState(Array.from({ length: size * size }, () => -1));
   const [selectedId, setSelectedId] = React.useState<number | null>(null);
   const [allMinesCount, setAllMinesCount] = React.useState(10);
@@ -22,6 +22,7 @@ const App = () => {
     is_dual: false,
     is_snake: false,
     is_balance: false,
+    is_wall: false,
   });
   const url = "http://127.0.0.1:8000/solve";
 
@@ -57,7 +58,7 @@ const App = () => {
                   const newGridNumbers = [...gridNumbers];
                   for (const e of res.data.result) {
                     if (e.flag) {
-                      newGridNumbers[e.r * size + e.c] = -3;
+                      newGridNumbers[e.r * size + e.c][0] = -3;
                     }
                   }
                   setGridNumbers(newGridNumbers);
