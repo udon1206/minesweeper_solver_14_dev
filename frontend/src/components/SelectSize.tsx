@@ -19,13 +19,14 @@ const useStyles = makeStyles({
     },
 });
 
-const SelectSizeDropDown = ({ size, setSize, setGridNumbers, setGridStatus, setSelectedId, setAllMinesCount }: {
+const SelectSizeDropDown = ({ size, setSize, setGridNumbers, setGridStatus, setSelectedId, setAllMinesCount, setRuleGrid }: {
     size: number;
     setSize: (size: number) => void;
     setGridNumbers: (gridNumbers: number[][]) => void;
     setGridStatus: (gridStatus: number[]) => void;
     setSelectedId: (selectedId: number | null) => void;
     setAllMinesCount: (allMinesCount: number) => void;
+    setRuleGrid: (ruleGrid: string[][]) => void;
 }) => {
     const options = [
         { key: "5", value: 5, allMinesCount: 10 },
@@ -45,6 +46,7 @@ const SelectSizeDropDown = ({ size, setSize, setGridNumbers, setGridStatus, setS
         setGridStatus(Array.from({ length: nextSize * nextSize }, () => -1));
         setSelectedId(null);
         setAllMinesCount(options.find(option => option.value === nextSize)?.allMinesCount ?? 10);
+        setRuleGrid(Array.from({ length: nextSize }, () => Array.from({ length: nextSize }, () => "V")));
     };
     return (
         <div className={styles.dropDown}>

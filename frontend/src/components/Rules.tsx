@@ -1,9 +1,11 @@
 import { Checkbox } from "@fluentui/react-components";
 import { Rule } from "../schema/Rule";
 
-const Rules = ({ rule, setRule }: {
+const Rules = ({ rule, setRule, setRuleGrid, size }: {
     rule: Rule,
     setRule: (rule: Rule) => void
+    setRuleGrid: (ruleGrid: string[][]) => void
+    size: number
 }) => {
     return (
         <div style={{
@@ -29,6 +31,7 @@ const Rules = ({ rule, setRule }: {
                 checked={rule.is_lie}
                 onChange={() => {
                     setRule({ ...rule, is_lie: !rule.is_lie });
+                    setRuleGrid(Array.from({ length: size }, () => Array.from({ length: size }, () => "L")));
                 }} />
             <Checkbox
                 label={"T"}
@@ -65,30 +68,42 @@ const Rules = ({ rule, setRule }: {
                 checked={rule.is_wall}
                 onChange={() => {
                     setRule({ ...rule, is_wall: !rule.is_wall });
+                    setRuleGrid(Array.from({ length: size }, () => Array.from({ length: size }, () => "W")));
                 }} />
             <Checkbox
                 label={"N"}
                 checked={rule.is_neutral}
                 onChange={() => {
                     setRule({ ...rule, is_neutral: !rule.is_neutral });
+                    setRuleGrid(Array.from({ length: size }, () => Array.from({ length: size }, () => "N")));
                 }} />
             <Checkbox
                 label={"X"}
                 checked={rule.is_xross}
                 onChange={() => {
                     setRule({ ...rule, is_xross: !rule.is_xross });
+                    setRuleGrid(Array.from({ length: size }, () => Array.from({ length: size }, () => "X")));
                 }} />
             <Checkbox
                 label={"P"}
                 checked={rule.is_partial}
                 onChange={() => {
                     setRule({ ...rule, is_partial: !rule.is_partial });
+                    setRuleGrid(Array.from({ length: size }, () => Array.from({ length: size }, () => "P")));
                 }} />
             <Checkbox
                 label={"E"}
                 checked={rule.is_eye}
                 onChange={() => {
                     setRule({ ...rule, is_eye: !rule.is_eye });
+                    setRuleGrid(Array.from({ length: size }, () => Array.from({ length: size }, () => "E")));
+                }} />
+            <Checkbox
+                label={"M"}
+                checked={rule.is_multiple}
+                onChange={() => {
+                    setRule({ ...rule, is_multiple: !rule.is_multiple });
+                    setRuleGrid(Array.from({ length: size }, () => Array.from({ length: size }, () => "M")));
                 }} />
         </div >
     );

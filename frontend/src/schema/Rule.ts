@@ -12,4 +12,5 @@ export type Rule = {
     is_xross: boolean,
     is_partial: boolean,
     is_eye: boolean,
+    is_multiple: boolean,
 }

@@ -27,7 +27,9 @@ const App = () => {
     is_xross: false,
     is_partial: false,
     is_eye: false,
+    is_multiple: false
   });
+  const [ruleGrid, setRuleGrid] = React.useState(Array.from({ length: size }, () => Array.from({ length: size }, () => "V")));
   const url = "http://127.0.0.1:8000/solve";
 
   return (
@@ -49,13 +51,14 @@ const App = () => {
             setGridNumbers={setGridNumbers}
             setSelectedId={setSelectedId}
             setGridStatus={setGridStatus}
-            setAllMinesCount={setAllMinesCount} />
+            setAllMinesCount={setAllMinesCount}
+            setRuleGrid={setRuleGrid} />
           <Input type="number" value={allMinesCount.toString()} onChange={(e) => {
             setAllMinesCount(parseInt(e.target.value));
           }
           } />
           <Button onClick={() => {
-            axios.post(url, convertEnvironment(gridNumbers, allMinesCount, size, rules))
+            axios.post(url, convertEnvironment(gridNumbers, allMinesCount, size, rules, ruleGrid))
               .then((res) => {
                 if (IsResult(res.data)) {
                   console.log(res.data);
@@ -88,7 +91,7 @@ const App = () => {
           }
             appearance="primary">Solve</Button>
         </div>
-        <Rules rule={rules} setRule={setRules} />
+        <Rules rule={rules} setRule={setRules} setRuleGrid={setRuleGrid} size={size} />
         <Grid size={size}
           gridNumbers={gridNumbers}
           setGridNumbers={setGridNumbers}
