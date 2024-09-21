@@ -97,7 +97,9 @@ const App = () => {
           setGridNumbers={setGridNumbers}
           gridStatus={gridStatus}
           selectedId={selectedId}
-          setSelectedId={setSelectedId} />
+          setSelectedId={setSelectedId}
+          ruleGrid={ruleGrid}
+          setRuleGrid={setRuleGrid} />
       </div>
     </>
   );

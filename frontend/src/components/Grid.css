@@ -5,6 +5,7 @@
 }
 
 .grid-item {
+  position: relative;
   border: 1px solid #a8a7a7; /* 軽い境界線 */
   padding: 20px;
   text-align: center;

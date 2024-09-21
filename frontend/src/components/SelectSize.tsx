@@ -6,7 +6,7 @@ import {
     SelectionEvents,
     shorthands,
 } from "@fluentui/react-components";
-import { all } from "axios";
+
 
 const useStyles = makeStyles({
     dropDown: {

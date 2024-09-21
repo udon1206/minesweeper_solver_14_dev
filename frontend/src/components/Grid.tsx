@@ -1,6 +1,7 @@
 import React from 'react';
 import './Grid.css';
 import SelectedGridVal from './SelectedGridVal';
+import SelectedRuleGrid from './SelectedRuleGrid';
 const Grid:
     React.FC<{
         size: number,
@@ -8,8 +9,10 @@ const Grid:
         setGridNumbers: (gridNumbers: number[][]) => void,
         gridStatus: number[],
         selectedId: number | null
-        setSelectedId: (selectedId: number | null) => void
-    }> = ({ size, gridNumbers, setGridNumbers, gridStatus, selectedId, setSelectedId }) => {
+        setSelectedId: (selectedId: number | null) => void,
+        ruleGrid: string[][],
+        setRuleGrid: (ruleGrid: string[][]) => void
+    }> = ({ size, gridNumbers, setGridNumbers, gridStatus, selectedId, setSelectedId, ruleGrid, setRuleGrid }) => {
         // N x N grid
         if (gridNumbers.length !== size * size) {
             throw new Error("gridNumbers.length !== size * size");
@@ -44,7 +47,13 @@ const Grid:
                                     setSelectedId(index);
                                 }
                             }>
-                            {printGridNumber(number)}
+                            <span>{printGridNumber(number)}</span>
+                            <span style={{
+                                position: "absolute",
+                                bottom: "5px",
+                                right: "5px",
+                                fontSize: "12px",
+                            }}>{ruleGrid[Math.floor(index / size)][index % size]}</span>
                         </div>
                     ))}
                 </div>
@@ -56,6 +65,11 @@ const Grid:
                             gridNumbers={gridNumbers}
                             setGridNumbers={setGridNumbers}
                             setSelectedId={setSelectedId} />
+                        <SelectedRuleGrid
+                            r={Math.floor(selectedId / size)}
+                            c={selectedId % size}
+                            ruleGrid={ruleGrid}
+                            setRuleGrid={setRuleGrid} />
                     </>)
                 }
             </div >
